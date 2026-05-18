@@ -26,6 +26,13 @@ def login():
         code = str(exc)
         if code == "ACCOUNT_DISABLED":
             return error_response("Account is disabled", "ACCOUNT_DISABLED", 401)
+        if code == "SEED_PASSWORDS_NOT_CONFIGURED":
+            return error_response(
+                "Demo passwords are not set yet. From the backend folder run: "
+                "python scripts/reset_seed_passwords.py",
+                "SEED_PASSWORDS_NOT_CONFIGURED",
+                503,
+            )
         return error_response("Invalid username or password", "INVALID_CREDENTIALS", 401)
     except Exception:
         return error_response("Login failed", "SERVER_ERROR", 500)

@@ -1,4 +1,4 @@
-﻿-- =============================================================================
+-- =============================================================================
 -- UBUNTU CAMPUS CLINIC â€” APPOINTMENT SYSTEM
 -- Group 19 | CMPG 311 | DBMS Module | Physical Design
 -- File: 04_insert_data.sql
@@ -146,6 +146,24 @@ INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
 VALUES (TRUNC(SYSDATE) + 3, '09:00', '09:30', 1);   -- slot_id 11
 INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
 VALUES (TRUNC(SYSDATE) + 7, '14:00', '14:30', 1);   -- slot_id 12
+
+-- Today + extra windows so Book Appointment is not empty on common picks
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE), '09:00', '09:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE), '10:00', '10:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE), '11:00', '11:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE), '14:00', '14:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE) + 1, '11:00', '11:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE) + 1, '14:00', '14:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE) + 2, '09:00', '09:30', 1);
+INSERT INTO TIMESLOT (slot_date, start_time, end_time, is_available)
+VALUES (TRUNC(SYSDATE) + 2, '14:00', '14:30', 1);
 
 -- =============================================================================
 -- APPOINTMENT â€” 8 rows (covers all status and booking_type values)

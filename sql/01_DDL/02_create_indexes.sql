@@ -1,4 +1,4 @@
-﻿-- =============================================================================
+-- =============================================================================
 -- UBUNTU CAMPUS CLINIC â€” APPOINTMENT SYSTEM
 -- Group 19 | CMPG 311 | DBMS Module | Physical Design
 -- File: 02_create_indexes.sql

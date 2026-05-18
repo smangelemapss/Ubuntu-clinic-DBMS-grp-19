@@ -1,4 +1,4 @@
-﻿-- =============================================================================
+-- =============================================================================
 -- UBUNTU CAMPUS CLINIC â€” APPOINTMENT SYSTEM
 -- Group 19 | CMPG 311 | DBMS Module | Physical Design
 -- File: 05_queries.sql
@@ -112,7 +112,7 @@ FROM (
     SELECT student_number, first_name, last_name, email
     FROM   PATIENT
     ORDER BY student_number
-)
+) top_patients
 WHERE  ROWNUM <= 5;
 
 -- Q2.3  Column projection: only 4 columns from STAFF (no sensitive data exposed)
@@ -132,7 +132,7 @@ FROM (
     SELECT a.*, ROWNUM AS rn
     FROM   APPOINTMENT a
     ORDER  BY appointment_id
-)
+) appt_page
 WHERE  rn BETWEEN 4 AND 6;
 
 
@@ -635,5 +635,5 @@ FROM (
     JOIN   DOCTOR       d ON d.staff_id = s.staff_id
     LEFT JOIN APPOINTMENT a ON a.staff_id = s.staff_id
     GROUP BY s.first_name, s.last_name, d.specialisation
-)
+) doctor_workload
 ORDER BY workload_rank;
