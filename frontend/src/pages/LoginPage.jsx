@@ -58,7 +58,7 @@ const PORTAL_CONFIG = {
 
     demoPass: 'Clinic@123',
 
-    demoHint: 'Demo doctor: dr.mokoena · Demo admin: admin.ndlovu · Password: Clinic@123',
+    demoHint: 'Demo: dr.mokoena (doctor) · nurse.molefe (nurse) · admin.ndlovu (admin) · Password: Clinic@123',
 
     showRegister: false,
 
@@ -257,6 +257,10 @@ export default function LoginPage({ portal = 'patient' }) {
           'Cannot reach the API. Start the backend with: python app.py (in the backend folder).'
 
         )
+
+      } else if (err.response?.data?.code === 'SEED_PASSWORDS_NOT_CONFIGURED') {
+
+        setError(err.response.data.error)
 
       } else if (err.response?.status === 401) {
 

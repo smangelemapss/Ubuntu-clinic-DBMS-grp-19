@@ -41,15 +41,23 @@ function normalizeHistory(rows) {
   }))
 }
 
+function formatSlotTime(value) {
+  if (value == null) return ''
+  const text = String(value).trim()
+  if (!text) return ''
+  const timePart = text.includes('T') ? text.split('T')[1] : text
+  if (/^\d{1,2}:\d{2}/.test(timePart)) return timePart.slice(0, 5)
+  return text.slice(0, 5)
+}
+
 function normalizeTimeslots(rows) {
-  if (!rows?.length) return []
-  if (typeof rows[0] === 'string') return rows
-  return rows
-    .filter((s) => s.is_available !== false)
-    .map((s) => {
-      const t = s.time || s.start_time || ''
-      return t.length >= 5 ? t.slice(0, 5) : t
-    })
+  const list = Array.isArray(rows) ? rows : rows?.data
+  if (!list?.length) return []
+  if (typeof list[0] === 'string') return list.map(formatSlotTime).filter(Boolean)
+  return list
+    .filter((s) => s.is_available !== false && s.is_available !== 0)
+    .map((s) => formatSlotTime(s.time ?? s.start_time))
+    .filter(Boolean)
 }
 
 export const getHealth = async () => {

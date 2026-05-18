@@ -26,6 +26,7 @@ const BookAppointment = () => {
   const [loading, setLoading] = useState(false)
   const [loadingDoctors, setLoadingDoctors] = useState(true)
   const [loadingTimeslots, setLoadingTimeslots] = useState(false)
+  const [timeslotsError, setTimeslotsError] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
@@ -37,13 +38,30 @@ const BookAppointment = () => {
   }, [])
 
   useEffect(() => {
-    if (selectedDoctor && selectedDate) {
-      setLoadingTimeslots(true)
-      getTimeslots(selectedDoctor, selectedDate)
-        .then(setTimeslots)
-        .catch(() => setTimeslots([]))
-        .finally(() => setLoadingTimeslots(false))
+    if (!selectedDoctor || !selectedDate) {
+      setTimeslots([])
+      setSelectedTime('')
+      setTimeslotsError('')
+      return
     }
+
+    setSelectedTime('')
+    setTimeslots([])
+    setTimeslotsError('')
+    setLoadingTimeslots(true)
+
+    getTimeslots(selectedDoctor, selectedDate)
+      .then((slots) => {
+        setTimeslots(slots)
+        if (!slots.length) {
+          setTimeslotsError('No times available for this doctor on that date. Try another day.')
+        }
+      })
+      .catch((err) => {
+        setTimeslots([])
+        setTimeslotsError(getApiError(err, 'Could not load available times.'))
+      })
+      .finally(() => setLoadingTimeslots(false))
   }, [selectedDoctor, selectedDate])
 
   const handleSubmit = async (e) => {
@@ -159,6 +177,11 @@ const BookAppointment = () => {
               ))
             )}
           </select>
+          {timeslotsError && !loadingTimeslots && (
+            <p className="page-subtitle" style={{ marginTop: '0.35rem', fontSize: '0.8125rem', color: 'var(--color-warning, #b45309)' }}>
+              {timeslotsError}
+            </p>
+          )}
         </div>
 
         <div className="form-group">

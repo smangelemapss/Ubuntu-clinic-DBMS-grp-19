@@ -24,6 +24,22 @@ _BOOKING_TYPE_MAP = {
 }
 
 
+def _format_slot_time(value):
+    """Normalize Oracle TIME / string values to HH:MM for API and booking match."""
+    if value is None:
+        return ""
+    if hasattr(value, "strftime"):
+        return value.strftime("%H:%M")
+    text = str(value).strip()
+    if "T" in text:
+        text = text.split("T", 1)[1]
+    if len(text) >= 8 and text[2] == ":" and text[5] == ":":
+        return text[:5]
+    if len(text) >= 5 and text[2] == ":":
+        return text[:5]
+    return text
+
+
 def _get_patient_id(user_id):
     row = patient_repo.get_patient_by_user_id(user_id)
     if not row:
@@ -103,7 +119,7 @@ def book_appointment(user_id, data):
     matching_slot = None
     for slot in slots:
         slot_id, start_time, is_available = slot
-        if start_time.startswith(time_slot):
+        if _format_slot_time(start_time) == _format_slot_time(time_slot):
             matching_slot = slot
             break
 
@@ -141,7 +157,7 @@ def get_available_slots(date_str, doctor_id=None):
     return [
         {
             "id": r[0],
-            "time": r[1],
+            "time": _format_slot_time(r[1]),
             "is_available": bool(r[2]),
         }
         for r in rows

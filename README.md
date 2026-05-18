@@ -171,8 +171,8 @@ demo-ready.bat
 |--------|----------|----------|------|
 | Patient | `karabo.mabena` | `Clinic@123` | PATIENT |
 | Staff | `dr.mokoena` | `Clinic@123` | DOCTOR |
-| Staff | `nurse.dlamini` | `Clinic@123` | NURSE |
-| Admin | `admin.nkosi` | `Clinic@123` | ADMIN |
+| Staff | `nurse.molefe` | `Clinic@123` | NURSE |
+| Admin | `admin.ndlovu` | `Clinic@123` | ADMIN |
 
 See [docs/DEMO_SCRIPT.md](./docs/DEMO_SCRIPT.md) for a 2–3 minute presentation walkthrough.
 

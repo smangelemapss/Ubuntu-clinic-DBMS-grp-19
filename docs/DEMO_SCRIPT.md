@@ -39,7 +39,7 @@ Use this order for examiners or video submission.
 
 ### 4. Admin (30 s)
 
-- Staff login: `admin.nkosi` / `Clinic@123`
+- Staff login: `admin.ndlovu` / `Clinic@123`
 - **Overview** — summary stats.
 - **Departments** — add a department.
 - **Users** — change a user role (dropdown).
@@ -56,5 +56,5 @@ Use this order for examiners or video submission.
 |----------|----------|------|
 | karabo.mabena | Clinic@123 | PATIENT |
 | dr.mokoena | Clinic@123 | DOCTOR |
-| nurse.dlamini | Clinic@123 | NURSE |
-| admin.nkosi | Clinic@123 | ADMIN |
+| nurse.molefe | Clinic@123 | NURSE |
+| admin.ndlovu | Clinic@123 | ADMIN |

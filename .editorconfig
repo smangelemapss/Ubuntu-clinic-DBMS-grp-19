@@ -1,0 +1,5 @@
+# UTF-8 without BOM — Oracle SQL Developer treats a leading BOM as an unknown command.
+root = true
+
+[*.sql]
+charset = utf-8

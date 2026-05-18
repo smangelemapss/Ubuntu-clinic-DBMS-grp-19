@@ -23,6 +23,9 @@ def login(username, password):
     if status != "ACTIVE":
         raise ValueError("ACCOUNT_DISABLED")
 
+    if password_hash == "CHANGEME":
+        raise ValueError("SEED_PASSWORDS_NOT_CONFIGURED")
+
     if not check_password_hash(password_hash, password):
         raise ValueError("INVALID_CREDENTIALS")
 
