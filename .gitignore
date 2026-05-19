@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.env
+backend/.env
+frontend/.env
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/.pytest_cache/
+frontend/dist/
+debug-*.log
+.cursor/
+
+# Accidental OneDrive path copies — never commit
+OneDrive/
+
+# S1 private handoff notes — local only, never commit
+cursor-follow-up/
+
+# Legacy quarantine (reference only)
+# frontend/_legacy/ is tracked intentionally for audit trail

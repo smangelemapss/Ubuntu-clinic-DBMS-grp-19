@@ -1,0 +1,3 @@
+# Optional thick-mode driver (requires Oracle Instant Client).
+# Prefer oracledb thin mode from requirements.txt — no Instant Client needed.
+cx_Oracle==8.3.0
